@@ -32,5 +32,6 @@ service : {
   fundWallet: (float64) -> (Result_2);
   getTransactionHistory: () -> (vec Transaction) query;
   getWalletInfo: () -> (Result_1) query;
-  sendMassPayout: (vec text, float64) -> (Result);
+  sendMassPayout: (vec text) -> (Result);
+  setApiKeys: (text, text) -> ();
 }

@@ -19,7 +19,8 @@ export const idlFactory = ({ IDL }) => {
     'fundWallet' : IDL.Func([IDL.Float64], [Result_2], []),
     'getTransactionHistory' : IDL.Func([], [IDL.Vec(Transaction)], ['query']),
     'getWalletInfo' : IDL.Func([], [Result_1], ['query']),
-    'sendMassPayout' : IDL.Func([IDL.Vec(IDL.Text), IDL.Float64], [Result], []),
+    'sendMassPayout' : IDL.Func([IDL.Vec(IDL.Text)], [Result], []),
+    'setApiKeys' : IDL.Func([IDL.Text, IDL.Text], [], []),
   });
 };
 export const init = ({ IDL }) => { return []; };

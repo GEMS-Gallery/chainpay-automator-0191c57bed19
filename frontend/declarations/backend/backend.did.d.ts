@@ -25,7 +25,8 @@ export interface _SERVICE {
   'fundWallet' : ActorMethod<[number], Result_2>,
   'getTransactionHistory' : ActorMethod<[], Array<Transaction>>,
   'getWalletInfo' : ActorMethod<[], Result_1>,
-  'sendMassPayout' : ActorMethod<[Array<string>, number], Result>,
+  'sendMassPayout' : ActorMethod<[Array<string>], Result>,
+  'setApiKeys' : ActorMethod<[string, string], undefined>,
 }
 export declare const idlFactory: IDL.InterfaceFactory;
 export declare const init: (args: { IDL: typeof IDL }) => IDL.Type[];

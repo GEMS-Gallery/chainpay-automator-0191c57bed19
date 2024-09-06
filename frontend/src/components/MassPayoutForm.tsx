@@ -13,13 +13,12 @@ const MassPayoutForm: React.FC<MassPayoutFormProps> = ({ onPayoutComplete }) => 
 
   const onSubmit = async (data: any) => {
     const addresses = data.addresses.split('\n').filter((address: string) => address.trim() !== '');
-    const amount = Number(data.amount);
 
-    if (addresses.length === 0 || isNaN(amount)) return;
+    if (addresses.length === 0) return;
 
     setLoading(true);
     try {
-      const result = await backend.sendMassPayout(addresses, amount);
+      const result = await backend.sendMassPayout(addresses);
       if ('ok' in result) {
         onPayoutComplete();
         reset();
@@ -56,20 +55,9 @@ const MassPayoutForm: React.FC<MassPayoutFormProps> = ({ onPayoutComplete }) => 
               />
             )}
           />
-          <Controller
-            name="amount"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Amount per Address"
-                type="number"
-                fullWidth
-                margin="normal"
-              />
-            )}
-          />
+          <Typography variant="body2" gutterBottom>
+            Each address will receive 0.000002 ETH
+          </Typography>
           <Button
             type="submit"
             variant="contained"

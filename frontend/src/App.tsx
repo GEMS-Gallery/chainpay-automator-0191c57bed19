@@ -4,6 +4,7 @@ import WalletInfo from './components/WalletInfo';
 import FundingSection from './components/FundingSection';
 import MassPayoutForm from './components/MassPayoutForm';
 import TransactionHistory from './components/TransactionHistory';
+import ApiKeyForm from './components/ApiKeyForm';
 import { backend } from 'declarations/backend';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
       <Typography variant="h2" component="h1" gutterBottom>
         Automated Onchain Payments
       </Typography>
+      <ApiKeyForm />
       <WalletInfo walletInfo={walletInfo} onCreateWallet={fetchWalletInfo} />
       <FundingSection onFundWallet={fetchWalletInfo} />
       <MassPayoutForm onPayoutComplete={fetchWalletInfo} />

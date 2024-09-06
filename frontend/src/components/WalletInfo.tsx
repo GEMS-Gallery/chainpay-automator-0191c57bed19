@@ -30,7 +30,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ walletInfo, onCreateWallet }) =
         {walletInfo ? (
           <Box>
             <Typography variant="body1">ID: {walletInfo.id}</Typography>
-            <Typography variant="body1">Balance: {walletInfo.balance.toFixed(2)}</Typography>
+            <Typography variant="body1">Balance: {walletInfo.balance.toFixed(2)} ETH</Typography>
             <Typography variant="body1">
               Created: {new Date(Number(walletInfo.createdAt) / 1000000).toLocaleString()}
             </Typography>

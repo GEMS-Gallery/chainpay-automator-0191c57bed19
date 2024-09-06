@@ -29,8 +29,8 @@ const TransactionHistory: React.FC = () => {
       sortable: true,
     },
     {
-      name: 'Amount',
-      selector: (row: any) => row.amount.toFixed(2),
+      name: 'Amount (ETH)',
+      selector: (row: any) => row.amount.toFixed(6),
       sortable: true,
     },
     {

@@ -37,7 +37,7 @@ const FundingSection: React.FC<FundingSectionProps> = ({ onFundWallet }) => {
         </Typography>
         <Box component="form" noValidate autoComplete="off">
           <TextField
-            label="Amount"
+            label="Amount (ETH)"
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}

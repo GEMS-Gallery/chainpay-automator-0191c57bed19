@@ -29,6 +29,12 @@ actor {
   // Stable variables
   stable var walletInfo : ?WalletInfo = null;
   stable var transactionHistory : [Transaction] = [];
+  stable var apiKeyName : Text = "";
+  stable var apiKeyPrivateKey : Text = "";
+
+  // Constants
+  let assetId : Text = "ETH";
+  let transferAmount : Float = 0.000002;
 
   // Helper functions
   func generateId() : Text {
@@ -38,21 +44,20 @@ actor {
   };
 
   // API methods
+  public func setApiKeys(name : Text, privateKey : Text) : async () {
+    apiKeyName := name;
+    apiKeyPrivateKey := privateKey;
+  };
+
   public func createWallet() : async Result.Result<WalletInfo, Text> {
-    switch (walletInfo) {
-      case (?_) {
-        #err("Wallet already exists")
-      };
-      case (null) {
-        let newWallet : WalletInfo = {
-          id = generateId();
-          balance = 0.0;
-          createdAt = Time.now();
-        };
-        walletInfo := ?newWallet;
-        #ok(newWallet)
-      };
-    }
+    // Simulating wallet creation
+    let newWallet : WalletInfo = {
+      id = generateId();
+      balance = 0.0;
+      createdAt = Time.now();
+    };
+    walletInfo := ?newWallet;
+    #ok(newWallet)
   };
 
   public query func getWalletInfo() : async Result.Result<WalletInfo, Text> {
@@ -73,10 +78,10 @@ actor {
     }
   };
 
-  public func sendMassPayout(addresses : [Text], amount : Float) : async Result.Result<[Transaction], Text> {
+  public func sendMassPayout(addresses : [Text]) : async Result.Result<[Transaction], Text> {
     switch (walletInfo) {
       case (?info) {
-        let totalAmount = Float.mul(Float.fromInt(addresses.size()), amount);
+        let totalAmount = Float.mul(Float.fromInt(addresses.size()), transferAmount);
         if (info.balance < totalAmount) {
           return #err("Insufficient balance");
         };
@@ -85,7 +90,7 @@ actor {
         for (recipient in addresses.vals()) {
           let transaction : Transaction = {
             id = generateId();
-            amount = amount;
+            amount = transferAmount;
             recipient = recipient;
             timestamp = Time.now();
           };

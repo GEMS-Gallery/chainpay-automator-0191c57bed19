@@ -1,0 +1,36 @@
+type WalletInfo = 
+ record {
+   balance: float64;
+   createdAt: Time;
+   id: text;
+ };
+type Transaction = 
+ record {
+   amount: float64;
+   id: text;
+   recipient: text;
+   timestamp: Time;
+ };
+type Time = int;
+type Result_2 = 
+ variant {
+   err: text;
+   ok: float64;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: WalletInfo;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok: vec Transaction;
+ };
+service : {
+  createWallet: () -> (Result_1);
+  fundWallet: (float64) -> (Result_2);
+  getTransactionHistory: () -> (vec Transaction) query;
+  getWalletInfo: () -> (Result_1) query;
+  sendMassPayout: (vec text, float64) -> (Result);
+}
